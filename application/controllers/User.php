@@ -14,8 +14,14 @@ class User extends CI_Controller {
 	{
 		// $this->product_m->get();
 		check_not_login();
+		check_admin();
 		$data['row'] = $this->user_m->get();
-		$this->template->load('template','user/member', $data);
+		$this->template->load('template','user/user_data', $data);
+	}
+
+	public function add()
+	{
+		$this->template->load('template','user/add_user' );
 	}
 
 }

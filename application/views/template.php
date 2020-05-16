@@ -113,6 +113,16 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+        <li>
+          <a href="<?=site_url('supplier')?>">
+            <i class="fa fa-truck"></i> <span>Supplier</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?=site_url('customer')?>">
+            <i class="fa fa-users"></i> <span>Customer</span>
+          </a>
+        </li>
 
         
         
@@ -233,10 +243,26 @@
 <script src="<?=base_url()?>/assets/bower_components/datatables/jquery.js"></script>
 <script src="<?=base_url()?>/assets/bower_components/datatables/bootstrap.js"></script>
 
+<!-- InputMask -->
+<script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
 <script>
   $(document).ready( function () {
     $('#myTable').DataTable();
 } );
+</script>
+
+<script>
+ $(function () { 
+  //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+ })
 </script>
 
 </body>
