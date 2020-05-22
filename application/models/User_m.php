@@ -22,4 +22,39 @@ class User_m extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+
+    public function edit($post)
+    {
+        $params = [
+            'name' => $post['cus_name'],
+            'sex' => $post['gender'],
+            'telp' => $post['telp'],
+            'addr' => $post['address'],
+            'updated' => date('Y-m-d H:i:s')
+        ];
+        $this->db->where('customer_id', $post['id']);
+        $this->db->update('customer', $params);
+    }
+
+    public function del($id)
+	{
+        $this->db->where('user_id', $id);
+        $this->db->delete('user');
+    }
+
+    public function add($post)
+    {
+        $params = [
+            'email' => $post['email'],
+            'username' => $post['username'],
+            'call_name' => $post['cname'],
+            'address' => $post['address'],
+            'telp' => $post['telp'],
+            'sex' => $post['gender'],
+            'name' => $post['name'],
+            'lvl' => $post['lvl'],
+            'password' => $post['password'],
+        ];
+        $this->db->insert('user', $params);
+    }
 }

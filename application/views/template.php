@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>MyCas</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -13,9 +13,11 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/Ionicons/css/ionicons.min.css">
 
     <link rel="stylesheet" href="<?=base_url()?>/assets/bower_components/datatables/dataTables.css">
+    <link rel="stylesheet" href="<?=base_url()?>/assets/bower_components/select2/dist/css/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/_all-skins.min.css">
+
 
 
 
@@ -108,20 +110,60 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         
-        <li>
+        <li <?=$this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : ''?> >
           <a href="<?=site_url('dashboard')?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li>
+        <li <?=$this->uri->segment(1) == 'supplier' ? 'class="active"' : ''?>>
           <a href="<?=site_url('supplier')?>">
             <i class="fa fa-truck"></i> <span>Supplier</span>
           </a>
-        </li>
-        <li>
+        </>
+        <li <?=$this->uri->segment(1) == 'customer' ? 'class="active"' : ''?>>
           <a href="<?=site_url('customer')?>">
             <i class="fa fa-users"></i> <span>Customer</span>
           </a>
+        </>
+
+        <li class="treeview <?=$this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'unit' || $this->uri->segment(1) == 'item' ? 'active' : ''?>">
+          <a href="#">
+            <i class="fa fa-archive"></i> <span>Product</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?=$this->uri->segment(1) == 'category' ? 'class="active"' : ''?>>
+              <a href="<?=site_url('category')?>"><i class="fa fa-circle-o"></i> Categories</a>
+            </li>
+            <li <?=$this->uri->segment(1) == 'unit' ? 'class="active"' : ''?>>
+              <a href="<?=site_url('unit')?>"><i class="fa fa-circle-o"></i> Units</a>
+            </li>
+            <li <?=$this->uri->segment(1) == 'item' ? 'class="active"' : ''?>>
+              <a href="<?=site_url('item')?>"><i class="fa fa-circle-o"></i> Items</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="treeview <?=$this->uri->segment(1) == 'stock' || $this->uri->segment(1) == 'stock/in' || $this->uri->segment(1) == 'stockOut' ? 'active' : ''?>">
+          <a href="#">
+            <i class="fa fa-archive"></i> <span>Product</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?=$this->uri->segment(1) == 'stock' ? 'class="active"' : ''?>>
+              <a href="<?=site_url('stock')?>"><i class="fa fa-circle-o"></i> Stock</a>
+            </li>
+            <li <?=$this->uri->segment(1) == 'stock/in' ? 'class="active"' : ''?>>
+              <a href="<?=site_url('stock/in')?>"><i class="fa fa-circle-o"></i> Stock In</a>
+            </li>
+            <li <?=$this->uri->segment(1) == 'stockOut' ? 'class="active"' : ''?>>
+              <a href="<?=site_url('stock/out')?>"><i class="fa fa-circle-o"></i> Stock Out</a>
+            </li>
+          </ul>
         </li>
 
         
@@ -243,6 +285,9 @@
 <script src="<?=base_url()?>/assets/bower_components/datatables/jquery.js"></script>
 <script src="<?=base_url()?>/assets/bower_components/datatables/bootstrap.js"></script>
 
+<!-- Select2 -->
+<script src="<?=base_url()?>/assets/bower_components/select2/dist/js/select2.full.min.js"></script>
+
 <!-- InputMask -->
 <script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.js"></script>
 <script src="<?=base_url()?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
@@ -255,6 +300,12 @@
 </script>
 
 <script>
+  $(document).ready(function() {
+     $('.select2').select2()
+});
+</script>
+
+<script>
  $(function () { 
   //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
@@ -263,6 +314,24 @@
     //Money Euro
     $('[data-mask]').inputmask()
  })
+</script>
+
+<script>
+$(document).ready(function() {
+    $(document).on('click', '#select', function() {
+        var item_id = $(this).data('id');
+        var barcode = $(this).data('barcode');
+        var name = $(this).data('name');
+        var unit_name = $(this).data('unit');
+        var stock = $(this).data('stock');
+        $('#item_id').val(item_id);
+        $('#barcode').val(barcode);
+        $('#itemName').val(name);
+        $('#unitName').val(unit_name);
+        $('#stock').val(stock);
+        $('#modal-item').modal('hide')
+    })
+})
 </script>
 
 </body>

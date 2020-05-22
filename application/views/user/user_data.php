@@ -30,10 +30,10 @@
                                 <tr>
                                     <th style="width:5%;">#</th>
                                     <th>Nama</th>
-                                    <th>Type</th>
-                                    <th>IP Address</th>
-                                    <th>Freq</th>
-                                    <th>CW</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Telp</th>
+                                    <th>Gender</th>
                                     <?php if ($this->session->userdata('lvl') == 1 ){ ?>
                                     <th>Opsi</th>
                                     <?php } ?>
@@ -48,15 +48,15 @@
                                 <td><?= $no++;?></td>
                                 <td><?= $data->name;?></td>
                                 <td><?= $data->email;?></td>
-                                <td><?= $data->birth;?></td>
+                                <td><?= $data->address;?></td>
                                 <td><?= $data->telp ?></td>
-                                <td><?= $data->password ?></td>
+                                <td><?= $data->sex ?></td>
 
                                 <?php if ($this->session->userdata('lvl') == 1 ){ ?>
                                 <td class="text-center" width="160px">
-                                    <form action="<?=site_url('product/del')?>" method="post">
+                                    <form action="<?=site_url('user/del')?>" method="post">
             
-                                    <a href="<?=site_url('product/edit/'.$data->user_id)?>" class="btn btn-primary btn-xs">
+                                    <a href="<?=site_url('user/edit/'.$data->user_id)?>" class="btn btn-primary btn-xs">
                                             <i class="fa fa-pencil"></i> Edit
                                         </a>
 

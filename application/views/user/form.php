@@ -16,7 +16,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data User</h3>
+                    <h3 class="box-title"><?=ucfirst($page)?> User</h3>
                     <div class="pull-right">
                     <a href="<?=site_url('user')?>" class="btn btn-warning btn-flat"><i class="fa fa-undo"></i> Back</a>
                     </div>
@@ -25,7 +25,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <form action="">
+                            <form action="<?=site_url('user/process')?>" method="post">
                                 <div class="form-group">
                                     <Label>Email</Label>
                                     <input type="text" name="email" class="form-control">
@@ -48,20 +48,20 @@
                                 </div>
                                 <div class="form-group">
                                     <Label>Telphone</Label>
-                                    <input type="text" name="telp" class="form-control">
+                                    <input type="number" name="telp" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <Label>Birth</Label>
-                                    <input type="date" name="birth" class="form-control">
+                                    <Label>Gender</Label>
+                                    <input type="sex" name="gender" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <Label>Password</Label>
-                                    <input type="text" name="password" class="form-control">
+                                    <input type="password" name="password" class="form-control">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <Label>Password Confirmation</Label>
                                     <input type="text" name="pascon" class="form-control">
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <Label>Telphone</Label>
                                     <select class="form-control" name="lvl">
